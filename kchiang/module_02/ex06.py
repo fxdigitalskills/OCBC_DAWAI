@@ -3,7 +3,23 @@ from pathlib import Path
 
 CSV_FILE = Path("./ratings.csv")
 
+
+def file_is_invalid():
+    if not CSV_FILE.exists():
+        print(f"Error: {CSV_FILE} does not exist.")
+        return True
+    if not CSV_FILE.is_file():
+        print(f"Error: {CSV_FILE} is not a file.")
+        return True
+    if os.access(CSV_FILE, os.R_OK) is False:
+        print(f"Error: {CSV_FILE} is not readable.")
+        return True
+    return False
+
+
 def main():
+    if file_is_invalid():
+        return
     with open(CSV_FILE, 'r', encoding="utf-8") as csvfile:
         reader = csv.reader(
             csvfile,

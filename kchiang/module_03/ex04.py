@@ -1,3 +1,4 @@
+import asyncio
 from requests_html import HTMLSession
 from bs4 import BeautifulSoup
 
@@ -9,6 +10,8 @@ headers = {
 	"Accept-Language": "en-US,en;q=0.5",
 }
 
+loop = asyncio.new_event_loop()
+asyncio.set_event_loop(loop)
 session = HTMLSession()
 
 def main():
